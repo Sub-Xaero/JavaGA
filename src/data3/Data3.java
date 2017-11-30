@@ -78,19 +78,19 @@ public class Data3 {
             bestEverIndividual = new Individual(best);
         }
 
-        System.out.println("Trained using " + trainingSet.size() + " sets of data");
-        System.out.println("Best's fitness on the training set " + bestEverIndividual.fitness);
+        System.out.println("Training Set : First" + trainingSet.size() + " of input data");
+        System.out.println("Best fitness against training set " + bestEverIndividual.fitness);
         System.out.println(GA.printRules(bestEverIndividual.rulebase));
         double percent_training = ((double) 100 / trainingSet.size()) * bestEverIndividual.fitness;
 
         GA.updateFitness(bestEverIndividual, testSet);
-        System.out.println("Tested using " + testSet.size() + " pieces of data");
-        System.out.println("Best's fitness over test set " + bestEverIndividual.fitness);
-        System.out.format("Equals %.2f%% accuracy on training set\n", percent_training);
+        System.out.println("Test Set : Last" + testSet.size() + " of input data");
+        System.out.println("Best fitness against test set " + bestEverIndividual.fitness);
+        System.out.format("%.2f%% accuracy on training set\n", percent_training);
         double percent_test = ((double) 100 / testSet.size()) * bestEverIndividual.fitness;
-        System.out.format("Equals %.2f%% accuracy on test set\n", percent_test);
+        System.out.format("%.2f%% accuracy on test set\n", percent_test);
 
-        return new GAResult(numberOfRules, populationSize, numGenerations, mutationRate, results);
+        return new GAResult(numberOfRules, populationSize, numGenerations, mutationRate, results, "Fitness : " + best.fitness + "\n" + GA.printRules(best.rulebase));
     }
 
     private static void updatePopulationFitnesses(Individual[] population, ArrayList<Data> trainingSet) {
