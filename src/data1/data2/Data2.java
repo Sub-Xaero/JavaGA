@@ -68,7 +68,7 @@ public class Data2 {
         System.out.println();
         System.out.println();
         System.out.println(GA.printRules(best.rulebase));
-        return new GAResult(numberOfRules, populationSize, numGenerations, mutationRate, results);
+        return new GAResult(numberOfRules, populationSize, numGenerations, mutationRate, results, "Fitness : " + best.fitness + "\n" + GA.printRules(best.rulebase));
     }
 
     private static ArrayList<Data> loadInputData(String filename) throws IOException {

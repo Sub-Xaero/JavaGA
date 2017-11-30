@@ -41,6 +41,13 @@ public class Run {
         writer.close();
     }
 
+    private static void WriteResult(String name, String content) throws IOException {
+        FileWriter writer = new FileWriter(name);
+        writer.append(content);
+        writer.flush();
+        writer.close();
+    }
+
     public static void main(String[] args) throws IOException {
 
         ArrayList<ArrayList<GenerationResult>> Data1Results = new ArrayList<>();
@@ -63,24 +70,33 @@ public class Run {
 //            Data3Results.add(Data3_GAResult.getResults());
         }
 
-        if (Data1Results.size() > 0) WriteCSV("CSVs/Data1 "
-                + "Mutation" +  Data1_GAResult.getMutationRate() + " "
-                + "Generations" +  Data1_GAResult.getNumGenerations() + " "
-                + "Population" +  Data1_GAResult.getPopulationSize() + " "
-                + "Rules"+  Data1_GAResult.getNumberOfRules() + " "
-                +  ".csv", AverageResults(Data1Results, numRounds));
-        if (Data2Results.size() > 0) WriteCSV("CSVs/Data2 "
-                + "Mutation" +  Data2_GAResult.getMutationRate() + " "
-                + "Generations" +  Data2_GAResult.getNumGenerations() + " "
-                + "Population" +  Data2_GAResult.getPopulationSize() + " "
-                + "Rules"+  Data2_GAResult.getNumberOfRules() + " "
-                +  ".csv", AverageResults(Data2Results, numRounds));
-        if (Data3Results.size() > 0) WriteCSV("CSVs/Data3 "
-                + "Mutation" +  Data3_GAResult.getMutationRate() + " "
-                + "Generations" +  Data3_GAResult.getNumGenerations() + " "
-                + "Population" +  Data3_GAResult.getPopulationSize() + " "
-                + "Rules"+  Data3_GAResult.getNumberOfRules() + " "
-                +  ".csv", AverageResults(Data3Results, numRounds));
+        if (Data1Results.size() > 0) {
+            String filename = "CSVs/Data1 - "
+                    + "Mutation " + Data1_GAResult.getMutationRate() + ", "
+                    + "Generations " + Data1_GAResult.getNumGenerations() + ", "
+                    + "Population " + Data1_GAResult.getPopulationSize() + ", "
+                    + "Rules " + Data1_GAResult.getNumberOfRules();
+            WriteResult(filename + ".txt", Data1_GAResult.getBest());
+            WriteCSV(filename + ".csv", AverageResults(Data1Results, numRounds));
+        }
 
+        if (Data2Results.size() > 0) {
+            String filename = "CSVs/Data2 - "
+                    + "Mutation " + Data2_GAResult.getMutationRate() + ", "
+                    + "Generations " + Data2_GAResult.getNumGenerations() + ", "
+                    + "Population " + Data2_GAResult.getPopulationSize() + ", "
+                    + "Rules " + Data2_GAResult.getNumberOfRules();
+            WriteResult(filename + ".txt", Data2_GAResult.getBest());
+            WriteCSV(filename + ".csv", AverageResults(Data2Results, numRounds));
+        }
+        if (Data3Results.size() > 0) {
+            String filename = "CSVs/Data3 - "
+                    + "Mutation " + Data3_GAResult.getMutationRate() + ", "
+                    + "Generations " + Data3_GAResult.getNumGenerations() + ", "
+                    + "Population " + Data3_GAResult.getPopulationSize() + ", "
+                    + "Rules " + Data3_GAResult.getNumberOfRules();
+            WriteResult(filename + ".txt", Data3_GAResult.getBest());
+            WriteCSV(filename + ".csv", AverageResults(Data3Results, numRounds));
+        }
     }
 }

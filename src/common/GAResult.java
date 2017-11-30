@@ -8,13 +8,23 @@ public class GAResult {
     private int numGenerations;
     private double mutationRate;
     private ArrayList<GenerationResult> results;
+    private String bestRulebase;
 
-    public GAResult(int numberOfRules, int populationSize, int numGenerations, double mutationRate, ArrayList<GenerationResult> results) {
+    public GAResult(int numberOfRules, int populationSize, int numGenerations, double mutationRate, ArrayList<GenerationResult> results, String bestRulebase) {
         this.numberOfRules = numberOfRules;
         this.populationSize = populationSize;
         this.numGenerations = numGenerations;
         this.mutationRate = mutationRate;
         this.results = results;
+        this.bestRulebase = bestRulebase;
+    }
+
+    public String getBest() {
+        return bestRulebase;
+    }
+
+    public void setBest(String bestRulebase) {
+        this.bestRulebase = bestRulebase;
     }
 
     int getNumberOfRules() {
